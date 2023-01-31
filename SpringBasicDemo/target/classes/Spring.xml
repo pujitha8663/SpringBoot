@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    ">
+ 
+ 
+    
+    <context:annotation-config />
+    
+    
+    <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="url" value="jdbc:mysql://localhost:3306/spring"></property>
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+    <property name="username" value="root"></property>
+    <property name="password" value="pujitha"></property>
+    
+     </bean>
+     
+     <bean id="con" class="com.controller.Employee_Controller">
+     <property name="es" ref="empsvr"></property>
+     
+     </bean>
+     <bean id="empsvr" class="com.Service.EmpSrv_impl">
+     <property name="ed" ref="empdao"></property>
+     </bean>
+     
+     <bean id="empdao" class="com.DAO.Employee_Impl"> 
+     <property name="ds" ref="datasource"></property>
+     
+     </bean>
+     
+     
+    
+</beans>
+ 
